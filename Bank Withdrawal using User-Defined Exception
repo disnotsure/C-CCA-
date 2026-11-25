@@ -1,0 +1,44 @@
+
+#include <iostream>
+using namespace std;
+
+class InsufficientBalanceException {
+public:
+    void display() {
+        cout << "Exception: Insufficient balance.";
+    }
+};
+
+class BankAccount {
+    float balance;
+
+public:
+    BankAccount(float b) {
+        balance = b;
+    }
+
+    void withdraw(float amount) {
+        if (amount > balance)
+            throw InsufficientBalanceException();
+
+        balance -= amount;
+        cout << "Remaining Balance = " << balance;
+    }
+};
+
+int main() {
+    float balance, amount;
+
+    cin >> balance >> amount;
+
+    BankAccount b(balance);
+
+    try {
+        b.withdraw(amount);
+    }
+    catch (InsufficientBalanceException e) {
+        e.display();
+    }
+
+    return 0;
+}
