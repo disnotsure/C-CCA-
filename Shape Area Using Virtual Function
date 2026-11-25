@@ -1,0 +1,62 @@
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class Shape {
+public:
+    virtual void area() {
+        cout << "Area of Shape";
+    }
+};
+
+class Circle : public Shape {
+    float r;
+public:
+    Circle(float radius) {
+        r = radius;
+    }
+
+    void area() override {
+        cout << fixed << setprecision(2);
+        cout << "Area of Circle = " << 3.14 * r * r;
+    }
+};
+
+class Rectangle : public Shape {
+    float l, b;
+public:
+    Rectangle(float length, float breadth) {
+        l = length;
+        b = breadth;
+    }
+
+    void area() override {
+        cout << fixed << setprecision(2);
+        cout << "Area of Rectangle = " << l * b;
+    }
+};
+
+int main() {
+    Shape *s;
+    string choice;
+
+    cin >> choice;
+
+    if (choice == "Circle") {
+        float r;
+        cin >> r;
+        Circle c(r);
+        s = &c;
+        s->area();
+    }
+    else if (choice == "Rectangle") {
+        float l, b;
+        cin >> l >> b;
+        Rectangle r(l, b);
+        s = &r;
+        s->area();
+    }
+
+    return 0;
+}
