@@ -1,0 +1,59 @@
+
+#include <iostream>
+using namespace std;
+
+class Account {
+public:
+    virtual void calculateInterest(float balance, float rate) {
+        cout << "Calculating Interest";
+    }
+};
+
+class SavingsAccount : public Account {
+public:
+    void calculateInterest(float balance, float rate) override {
+        float interest = balance * rate / 100;
+        cout << "Interest = " << interest << endl;
+        cout << "Final Balance = " << balance + interest;
+    }
+};
+
+class CurrentAccount : public Account {
+public:
+    void calculateInterest(float balance, float rate) override {
+        cout << "Interest = 0" << endl;
+        cout << "Final Balance = " << balance;
+    }
+};
+
+class FixedDepositAccount : public Account {
+public:
+    void calculateInterest(float balance, float rate) override {
+        float interest = balance * rate / 100;
+        cout << "Interest = " << interest << endl;
+        cout << "Final Balance = " << balance + interest;
+    }
+};
+
+int main() {
+    Account *a;
+    string type;
+    float balance, rate;
+
+    cin >> type >> balance >> rate;
+
+    SavingsAccount s;
+    CurrentAccount c;
+    FixedDepositAccount f;
+
+    if (type == "Savings")
+        a = &s;
+    else if (type == "Current")
+        a = &c;
+    else
+        a = &f;
+
+    a->calculateInterest(balance, rate);
+
+    return 0;
+}
