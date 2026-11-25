@@ -1,0 +1,62 @@
+
+#include <iostream>
+using namespace std;
+
+class Employee {
+public:
+    virtual void calculateSalary() {
+        cout << "Calculating Salary";
+    }
+};
+
+class Developer : public Employee {
+    int basic, bonus;
+public:
+    Developer(int b, int bo) {
+        basic = b;
+        bonus = bo;
+    }
+
+    void calculateSalary() override {
+        cout << "Total Salary = " << basic + bonus;
+    }
+};
+
+class Manager : public Employee {
+    int basic, allowance;
+public:
+    Manager(int b, int a) {
+        basic = b;
+        allowance = a;
+    }
+
+    void calculateSalary() override {
+        cout << "Total Salary = " << basic + allowance;
+    }
+};
+
+int main() {
+    Employee *e;
+    string choice;
+
+    cin >> choice;
+
+    if (choice == "Developer") {
+        int basic, bonus;
+        cin >> basic >> bonus;
+
+        Developer d(basic, bonus);
+        e = &d;
+        e->calculateSalary();
+    }
+    else if (choice == "Manager") {
+        int basic, allowance;
+        cin >> basic >> allowance;
+
+        Manager m(basic, allowance);
+        e = &m;
+        e->calculateSalary();
+    }
+
+    return 0;
+}
