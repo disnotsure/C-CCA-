@@ -1,0 +1,60 @@
+
+#include <iostream>
+using namespace std;
+
+class Payment {
+public:
+    virtual void makePayment(float amount) {
+        cout << "Payment Processing";
+    }
+};
+
+class UPI : public Payment {
+public:
+    void makePayment(float amount) override {
+        cout << "Payment Mode: UPI" << endl;
+        cout << "Amount Paid = " << amount << endl;
+        cout << "Payment Successful";
+    }
+};
+
+class CreditCard : public Payment {
+public:
+    void makePayment(float amount) override {
+        cout << "Payment Mode: Credit Card" << endl;
+        cout << "Amount Paid = " << amount << endl;
+        cout << "Payment Successful";
+    }
+};
+
+class Cash : public Payment {
+public:
+    void makePayment(float amount) override {
+        cout << "Payment Mode: Cash" << endl;
+        cout << "Amount Paid = " << amount << endl;
+        cout << "Payment Successful";
+    }
+};
+
+int main() {
+    Payment *p;
+    string choice;
+    float amount;
+
+    cin >> choice >> amount;
+
+    UPI u;
+    CreditCard c;
+    Cash ca;
+
+    if (choice == "UPI")
+        p = &u;
+    else if (choice == "CreditCard")
+        p = &c;
+    else
+        p = &ca;
+
+    p->makePayment(amount);
+
+    return 0;
+}
