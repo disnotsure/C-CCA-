@@ -1,0 +1,80 @@
+
+#include <iostream>
+using namespace std;
+
+class Vehicle {
+public:
+    virtual void displayDetails() {
+        cout << "Vehicle Details";
+    }
+};
+
+class Bike : public Vehicle {
+    string brand, model;
+public:
+    Bike(string b, string m) {
+        brand = b;
+        model = m;
+    }
+
+    void displayDetails() override {
+        cout << "Vehicle: Bike" << endl;
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model;
+    }
+};
+
+class Car : public Vehicle {
+    string brand, model;
+public:
+    Car(string b, string m) {
+        brand = b;
+        model = m;
+    }
+
+    void displayDetails() override {
+        cout << "Vehicle: Car" << endl;
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model;
+    }
+};
+
+class Bus : public Vehicle {
+    string brand, model;
+public:
+    Bus(string b, string m) {
+        brand = b;
+        model = m;
+    }
+
+    void displayDetails() override {
+        cout << "Vehicle: Bus" << endl;
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model;
+    }
+};
+
+int main() {
+    Vehicle *v;
+    string choice, brand, model;
+
+    cin >> choice >> brand >> model;
+
+    if (choice == "Bike") {
+        Bike b(brand, model);
+        v = &b;
+        v->displayDetails();
+    }
+    else if (choice == "Car") {
+        Car c(brand, model);
+        v = &c;
+        v->displayDetails();
+    }
+    else if (choice == "Bus") {
+        Bus b(brand, model);
+        v = &b;
+        v->displayDetails();
+    }
+
+    return 0;
+}
