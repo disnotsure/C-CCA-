@@ -1,0 +1,36 @@
+
+#include <iostream>
+using namespace std;
+
+class InvalidPIN {
+public:
+    void display() {
+        cout << "Exception: Incorrect PIN." << endl;
+    }
+};
+
+int main() {
+    int correctPIN = 1234;
+    int pin, attempts = 0;
+
+    while (attempts < 3) {
+        cin >> pin;
+
+        try {
+            if (pin != correctPIN)
+                throw InvalidPIN();
+
+            cout << "PIN Verified Successfully";
+            return 0;
+        }
+        catch (InvalidPIN e) {
+            attempts++;
+            e.display();
+            cout << "Attempts Remaining: " << 3 - attempts << endl;
+        }
+    }
+
+    cout << "ATM Card Blocked";
+
+    return 0;
+}
