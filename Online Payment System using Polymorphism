@@ -1,0 +1,63 @@
+
+#include <iostream>
+using namespace std;
+
+class Payment {
+public:
+    virtual void processPayment(float amount, float charge) {
+        cout << "Processing Payment";
+    }
+};
+
+class UPIPayment : public Payment {
+public:
+    void processPayment(float amount, float charge) override {
+        float total = amount + (amount * charge / 100);
+        cout << "Transaction Charge = " << amount * charge / 100 << endl;
+        cout << "Total Amount = " << total << endl;
+        cout << "Payment Status = Successful";
+    }
+};
+
+class CardPayment : public Payment {
+public:
+    void processPayment(float amount, float charge) override {
+        float total = amount + (amount * charge / 100);
+        cout << "Transaction Charge = " << amount * charge / 100 << endl;
+        cout << "Total Amount = " << total << endl;
+        cout << "Payment Status = Successful";
+    }
+};
+
+class NetBankingPayment : public Payment {
+public:
+    void processPayment(float amount, float charge) override {
+        float total = amount + (amount * charge / 100);
+        cout << "Transaction Charge = " << amount * charge / 100 << endl;
+        cout << "Total Amount = " << total << endl;
+        cout << "Payment Status = Successful";
+    }
+};
+
+int main() {
+    Payment *p;
+    string mode;
+    float amount, charge;
+
+    cin >> mode >> amount >> charge;
+
+    UPIPayment u;
+    CardPayment c;
+    NetBankingPayment n;
+
+    if (mode == "UPI")
+        p = &u;
+    else if (mode == "Card")
+        p = &c;
+    else
+        p = &n;
+
+    p->processPayment(amount, charge);
+
+    return 0;
+}
